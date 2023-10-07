@@ -107,10 +107,11 @@ public class Lexer
     private List<Token> FixSyntaxToken(List<Token> Tokens)
     {
         List<Token> TokenList = Tokens;
+        // Foreach Part Start
+        // POINT_NUMBER FIX
         for (int i = 0; i < TokenList.Count; i++)
         {
             Token TokenNow = TokenList[i];
-            //if (TokenList[i].Name.StartsWith("\"") && !TokenList[i].Name.EndsWith("\""))
             if (TokenNow.Name.Equals("."))
             {
                 if (i + 1 < TokenList.Count)
@@ -133,7 +134,75 @@ public class Lexer
             }
             
         }
-        
+        // Numbers in Scientific notation FIX
+        for (int i = 0; i < TokenList.Count; i++)
+        {
+            Token TokenNow = TokenList[i];
+            if (TokenNow.Name.Equals("."))
+            {
+                if (i + 1 < TokenList.Count)
+                {
+                    if (Regex.Match(TokenList[i + 1].Name, "^[0-9]+e$").Length == TokenList[i + 1].Name.Length)
+                    {
+                        if (i - 1 >= 0)
+                        {
+                            if (Regex.Match(TokenList[i - 1].Name, "^[0-9]+$").Length == TokenList[i - 1].Name.Length)
+                            {
+                                if (i + 2 >= 0)
+                                {
+                                    if (Regex.Match(TokenList[i + 2].Name, "^[+-]$").Length == TokenList[i + 2].Name.Length)
+                                    {
+                                        if (i + 3 >= 0)
+                                        {
+                                            if (Regex.Match(TokenList[i + 3].Name, "^[0-9]+$").Length == TokenList[i + 3].Name.Length)
+                                            {
+                                
+                                                TokenList[i].Type = TokenTypes.NUMBER;
+                                                TokenList[i].Name = TokenList[i].Name + TokenList[i + 1].Name + TokenList[i + 2].Name + TokenList[i + 3].Name;
+                                                TokenList.RemoveAt(i + 3);
+                                                TokenList.RemoveAt(i + 2);
+                                                TokenList.RemoveAt(i + 1);
+                                                TokenList[i].Name = TokenList[i - 1].Name + TokenList[i].Name;
+                                                TokenList.RemoveAt(i - 1);
+                                        
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < TokenList.Count; i++)
+        {
+            Token TokenNow = TokenList[i];
+            if (TokenNow.Name.Equals("."))
+            {
+                if (i + 1 < TokenList.Count)
+                {
+                    if (Regex.Match(TokenList[i + 1].Name, "^[0-9]+e+[0-9]+$").Length == TokenList[i + 1].Name.Length)
+                    {
+                        if (i - 1 >= 0)
+                        {
+                            if (Regex.Match(TokenList[i - 1].Name, "^[0-9]+$").Length == TokenList[i - 1].Name.Length)
+                            {
+                                TokenList[i].Type = TokenTypes.NUMBER;
+                                TokenList[i].Name = TokenList[i].Name + TokenList[i + 1].Name;
+                                TokenList.RemoveAt(i + 1);
+                                TokenList[i].Name = TokenList[i - 1].Name + TokenList[i].Name;
+                                TokenList.RemoveAt(i - 1);
+                                                
+
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // Foreach Part End
         return TokenList;
     }
 }
