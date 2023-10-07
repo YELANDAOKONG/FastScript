@@ -25,6 +25,7 @@ public class Lexer
             for (int j = 0; j < Lines[i].Length; j++)
             {
                 char CharNow = Lines[i][j];
+                // String Part Start
                 if (InString)
                 {
                     if (CharNow == '"')
@@ -56,6 +57,7 @@ public class Lexer
                     WordNow += CharNow.ToString();
                     continue;
                 }
+                // String Part End
 
                 if (TSCharList.TCL.Contains(CharNow.ToString().ToLower()))
                 {
