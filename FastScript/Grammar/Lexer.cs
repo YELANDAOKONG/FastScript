@@ -1,7 +1,11 @@
-﻿namespace FastScript.Grammar;
+﻿using System.Text.RegularExpressions;
+
+namespace FastScript.Grammar;
 
 public class Lexer
 {
+    private static readonly Regex _tokenRegex = new Regex(@"(?<String>""[^""\\]*(?:\\.[^""\\]*)*"")|(?<Number>\d+)|(?<Identifier>\w+)|(?<Symbol>[^\w\s]+)", RegexOptions.Compiled);
+    
     private string SourceCode = "";
 
     public Lexer(string sourceCode)

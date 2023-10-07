@@ -12,7 +12,8 @@ foreach (var token in lexer.Run())
     Console.WriteLine(token.Type);
     Console.WriteLine(token.LineNumber);
     Console.WriteLine(token.CharNumber);
-    temp = temp + "\"" + token.Name + "\"" + ",";
+    // temp = temp + "\"" + token.Name + "\"" + ",";
+    temp = temp + "\n" + token.Name;
 }
 Console.WriteLine("============================");
 Console.WriteLine(temp);
