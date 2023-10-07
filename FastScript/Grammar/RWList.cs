@@ -7,12 +7,14 @@ public class RWList
         {"NULL" , @"^null$"},
         {"ID" , @"^[a-zA-Z_][a-zA-Z_0-9]*$"}, 
         
-        {"STRING", "\"([^\"\"\\\\]|\\\\.)*\""}, //"([^""\\]|\\.)*"
+        {"STRING", "\\\"[^\\\"]*\\\""}, //"([^""\\]|\\.)*"  or   \"([^\"\"\\\\]|\\\\.)*\"   or     \"[^\"]*\"             
+
         {"NUMBER", @"^-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?$"},
         {"POINT_NUMBER", @"^-?(0|[1-9][0-9]*)(\.[0-9]+)?$"},
         {"BOOL", @"^true$|^false$"},
         
         
+
         
     };
     public static readonly Dictionary<int, string> WeightList = new Dictionary<int, string>()

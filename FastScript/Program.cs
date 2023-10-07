@@ -3,7 +3,7 @@
 using FastScript.Grammar;
 
 Console.WriteLine("Hello, World!");
-Lexer lexer = new Lexer("print(\"Hello, World!\")");
+Lexer lexer = new Lexer(" print(\"Hello\\\", World!\");");
 string temp = "";
 foreach (var token in lexer.Run())
 {
