@@ -17,3 +17,5 @@ foreach (var token in lexer.Run())
 }
 Console.WriteLine("============================");
 Console.WriteLine(temp);
+
+
