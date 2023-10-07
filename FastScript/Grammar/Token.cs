@@ -19,15 +19,16 @@ public class Token
 
         foreach (var wobj in RWList.WeightList.Keys)
         {
+            //Console.WriteLine("DEBUG> " + wobj + " ----->" + RWList.WeightList.Keys);
             if (RWList.RegexList.ContainsKey(RWList.WeightList[wobj]))
             {
                 string regex = RWList.RegexList[RWList.WeightList[wobj]];
+                //Console.WriteLine("DEBUG> " + regex + " =>" + RWList.RegexList[RWList.WeightList[wobj]]);
                 if (Regex.Match(name, regex).Length == name.Length)
                 {
                     return StringToTokenType(RWList.WeightList[wobj]);
                 }
             }
-            return TokenTypes.UNKNOW;
         }
 
         return TokenTypes.UNKNOW;
