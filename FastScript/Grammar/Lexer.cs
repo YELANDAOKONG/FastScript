@@ -109,11 +109,31 @@ public class Lexer
         List<Token> TokenList = Tokens;
         for (int i = 0; i < TokenList.Count; i++)
         {
-            if (TokenList[i].Name.StartsWith("\"") && !TokenList[i].Name.EndsWith("\""))
+            Token TokenNow = TokenList[i];
+            //if (TokenList[i].Name.StartsWith("\"") && !TokenList[i].Name.EndsWith("\""))
+            if (TokenNow.Name.Equals("."))
             {
-                
+                if (i + 1 < TokenList.Count)
+                {
+                    if (Regex.Match(TokenList[i + 1].Name, "^[0-9]+$").Length == TokenList[i + 1].Name.Length)
+                    {
+                        if (i - 1 >= 0)
+                        {
+                            if (Regex.Match(TokenList[i - 1].Name, "^[0-9]+$").Length == TokenList[i - 1].Name.Length)
+                            {
+                                TokenList[i].Type = TokenTypes.POINT_NUMBER;
+                                TokenList[i].Name += TokenList[i + 1].Name;
+                                TokenList.RemoveAt(i + 1);
+                                TokenList[i].Name = TokenList[i - 1].Name + TokenList[i].Name;
+                                TokenList.RemoveAt(i - 1);
+                            }
+                        }
+                    }
+                }
             }
+            
         }
+        
         return TokenList;
     }
 }
