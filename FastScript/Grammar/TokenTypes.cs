@@ -8,6 +8,7 @@ public enum TokenTypes
     KEYWORD,
     CHAR,
     COMMENT,
+    MODULE_ID,
     
 
     STRING,

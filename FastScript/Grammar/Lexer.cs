@@ -107,8 +107,8 @@ public class Lexer
     private List<Token> FixSyntaxToken(List<Token> Tokens)
     {
         List<Token> TokenList = Tokens;
-        // Foreach Part Start
-        // POINT_NUMBER FIX
+        // Foreach Part Start =======================================================================================================
+        // POINT_NUMBER FIX -------------------------------------------
         for (int i = 0; i < TokenList.Count; i++)
         {
             Token TokenNow = TokenList[i];
@@ -134,7 +134,7 @@ public class Lexer
             }
             
         }
-        // Numbers in Scientific notation FIX
+        // Numbers in Scientific notation FIX -------------------------------------------
         for (int i = 0; i < TokenList.Count; i++)
         {
             Token TokenNow = TokenList[i];
@@ -202,7 +202,7 @@ public class Lexer
                 }
             }
         }
-        // Foreach Part End
+        // Foreach Part End =======================================================================================================
         return TokenList;
     }
 }
