@@ -181,8 +181,7 @@ public class Lexer
             if (TokenNow.Name.Equals("."))
             {
                 if (i + 1 < TokenList.Count)
-                {
-                    if (Regex.Match(TokenList[i + 1].Name, "^[0-9]+e+[0-9]+$").Length == TokenList[i + 1].Name.Length)
+                { if (Regex.Match(TokenList[i + 1].Name, "^[0-9]+e+[0-9]+$").Length == TokenList[i + 1].Name.Length)
                     {
                         if (i - 1 >= 0)
                         {
