@@ -4,8 +4,19 @@ using System.Text.RegularExpressions;
 using FastScript.Grammar;
 
 Console.WriteLine("Hello, World!");
-Lexer lexer = new Lexer(" print(\"Hello\\\", World!\");\nadd(114514);\nsub(114514.0);\ntest(1.23e+08);\nmul(19.19810);\ntest3(1.23e9);" + 
-                        "import a.b; import c.d.e.f.g;");
+/*Lexer lexer = new Lexer(" print(\"Hello\\\", World!\");\nadd(114514);\nsub(114514.0);\ntest(1.23e+08);\nmul(19.19810);\ntest3(1.23e9);" + 
+                        "import a.b; import c.d.e.f.g;");*/
+Lexer lexer = new Lexer("""
+                        print("Hello", World!);
+                        add(114514);
+                        sub(114514.0);
+                        test(1.23e+08);
+                        mul(19.19810);
+                        test3(1.23e9);
+                        function testfunc(int a, int b) ->int{
+                            return a + b;
+                        }                               
+                        """);
 string temp = "";
 foreach (var token in lexer.Run())
 {

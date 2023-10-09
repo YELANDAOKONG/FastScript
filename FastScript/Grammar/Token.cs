@@ -12,6 +12,10 @@ public class Token
 
     public static TokenTypes GetTokenType(string name)
     {
+        if (KeyWordList.KeyWords.Contains(name))
+        {
+            return TokenTypes.KEYWORD;
+        }
         if (TSCharList.TCL.Contains(name))
         {
             return TokenTypes.CHAR;
