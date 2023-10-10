@@ -19,7 +19,7 @@ public class Parser
             Token TokenNow = this.Tokens[i];
             if (TokenNow.Type == TokenTypes.CHAR)
             {
-                if (Tokens.Count >= i + 1 && this.Tokens[i+1].Type == TokenTypes.ID && this.Tokens[i+1].Name == "encoding")
+                if (this.Tokens.Count > i + 1 && this.Tokens[i+1].Type == TokenTypes.ID && this.Tokens[i+1].Name == "encoding")
                 {
                     ASTNode astNode = new ASTNode();
                     astNode.Type = "encoding";
@@ -31,6 +31,8 @@ public class Parser
                     {
                         throw new GrammarParsingException("Encoding must have a value");
                     }
+                    Root.Body.Add(astNode);
+                    continue;
                 }
             }
         }

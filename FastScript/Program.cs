@@ -37,3 +37,4 @@ Console.WriteLine(temp);
 Console.WriteLine("============================");
 Parser parser = new Parser(lexer.Run());
 Console.WriteLine(parser.Run());
+parser.Run().PrintOut();
