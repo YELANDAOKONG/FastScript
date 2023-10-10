@@ -6,7 +6,7 @@ using FastScript.Grammar;
 Console.WriteLine("Hello, World!");
 /*Lexer lexer = new Lexer(" print(\"Hello\\\", World!\");\nadd(114514);\nsub(114514.0);\ntest(1.23e+08);\nmul(19.19810);\ntest3(1.23e9);" + 
                         "import a.b; import c.d.e.f.g;");*/
-Lexer lexer = new Lexer("""
+/*Lexer lexer = new Lexer("""
                         print("Hello", World!);
                         add(114514);
                         sub(114514.0);
@@ -17,6 +17,9 @@ Lexer lexer = new Lexer("""
                             return a + b;
                         }                               
                         """);
+*/
+StreamReader sr = new StreamReader(@"..\..\..\Test.fst");
+Lexer lexer = new Lexer(sr.ReadToEnd());
 string temp = "";
 foreach (var token in lexer.Run())
 {
