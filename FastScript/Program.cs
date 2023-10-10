@@ -34,4 +34,6 @@ foreach (var token in lexer.Run())
 Console.WriteLine("============================");
 Console.WriteLine(temp);
 //Console.WriteLine(Regex.Match("\"hello\\\"world\"","\"([^\"\\\\]*(?:\\\\.[^\"\\\\]*)*)\""));
-
+Console.WriteLine("============================");
+Parser parser = new Parser(lexer.Run());
+Console.WriteLine(parser.Run());
